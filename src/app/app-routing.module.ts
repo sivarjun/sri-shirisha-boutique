@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
+import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 
 const routes: Routes = [
 
   {path:'',component:HomeComponent},
   {path:'home', component:HomeComponent},
-  {path:'customer',component:CustomerListComponent},
-  {path:'customer/:id',component:EditCustomerComponent},
+  {path:'customers',component:CustomerListComponent},
+  {path:'customers/:id',component:CustomerDetailComponent},
+  {path:'customers/:id/edit',component:EditCustomerComponent},
   {path:'**',redirectTo:''}
 
 

@@ -5,8 +5,6 @@
     </div>
     <div class="card-body">
 
-
-
       <form>
 
         <div class="mb-3">
@@ -14,28 +12,35 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputName">Customer Name</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Customer Name">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control" name="customerName"   [(ngModel)]="customer.Name"
+            placeholder="Customer Name">
           </div>
           <div class="form-group col-md-6">
             <label for="inputPhone">Phone</label>
-            <input type="number" class="form-control" id="inputPhone" placeholder="Phone Number">
+            <input type="number" class="form-control"
+            name="customerPhone"
+            [(ngModel)]="customer.Phone"
+             id="inputPhone" placeholder="Phone Number">
           </div>
         </div>
         <div class="form-group">
           <label for="inputAddress">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          <input type="text" class="form-control" 
+          name="customerAddress"
+            [(ngModel)]="customer.Address"
+          id="inputAddress" placeholder="#007 Main St">
         </div>
         <div class="form-group">
           <div>
             <label>Gender</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="inputMale" value="Male" [(ngModel)]="Gender" name="customrGender" class="custom-control-input">
+            <input type="radio" id="inputMale" value="Male" [(ngModel)]="customer.Gender" name="customrGender" class="custom-control-input">
             <label class="custom-control-label" for="inputMale">Male</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="inputFemale" value="Female" [(ngModel)]="Gender" name="customrGender" class="custom-control-input">
+            <input type="radio" id="inputFemale" value="Female" [(ngModel)]="customer.Gender" name="customrGender" class="custom-control-input">
             <label class="custom-control-label" for="inputFemale">Female</label>
           </div>
         </div>
@@ -50,42 +55,59 @@
 
         <!--  Blouse -->
 
-        <div class="custom-control custom-checkbox h6">
-          <input type="checkbox" name="Blouse" [(ngModel)]="blouse" class="custom-control-input" id="customCheck1">
-          <label class="custom-control-label" for="customCheck1">
-            Blouse </label>
+        <div class="h6">
+         <label> Blouse </label>
+         {{customer|json}}
         </div>
 
-        <div class="form-row" *ngIf="blouse">
+        <div class="form-row">
           <div class="form-group col">
-            <label for="inputCity">M1</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputCity">Bust</label>
+            <input type="text" class="form-control"
+            name="Bust"
+            [(ngModel)]="customer.BlouseMesurement.Bust">
+         
           </div>
           <div class="form-group col">
-            <label for="inputCity">M2</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputCity">BlouseLength</label>
+            <input type="text"
+             class="form-control"
+             name="BlouseLength"
+             [(ngModel)]="customer.BlouseMesurement.BlouseLength"
+             >
           </div>
           <div class="form-group col">
-            <label for="inputCity">M3</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputCity">AroundAboveWaist</label>
+            <input type="text" class="form-control"
+            name="AroundAboveWaist"
+            [(ngModel)]="customer.BlouseMesurement.AroundAboveWaist">
           </div>
           <div class="form-group col">
-            <label for="inputZip">M4</label>
-            <input type="text" class="form-control" id="inputZip">
+            <label for="inputZip">FrontNeckDepth</label>
+            <input type="text" class="form-control" 
+             name="FrontNeckDepth"
+            [(ngModel)]="customer.BlouseMesurement.FrontNeckDepth">
           </div>
           <div class="form-group col">
-            <label for="inputCity">M5</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputCity">BackNeckDepth</label>
+            <input type="text" class="form-control"
+            name="BackNeckDepth"
+            [(ngModel)]="customer.BlouseMesurement.BackNeckDepth">
           </div>
           <div class="form-group col">
-            <label for="inputCity">M6</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputCity">AroundArm</label>
+            <input type="text" class="form-control" 
+            name="AroundArm"
+            [(ngModel)]="customer.BlouseMesurement.AroundArm"
+            >
           </div>
           <div class="form-group col">
-            <label for="inputZip">M7</label>
-            <input type="text" class="form-control" id="inputZip">
+            <label for="inputZip">SleeveLength</label>
+            <input type="text" class="form-control" 
+            name="SleeveLength"
+            [(ngModel)]="customer.BlouseMesurement.SleeveLength">
           </div>
-          <div class="form-group col">
+         <!--  <div class="form-group col">
             <label for="inputCity">M8</label>
             <input type="text" class="form-control" id="inputCity">
           </div>
@@ -100,22 +122,22 @@
           <div class="form-group col">
             <label for="inputCity">M11</label>
             <input type="text" class="form-control" id="inputCity">
-          </div>
+          </div> -->
 
 
 
         </div>
 
 
-        <!--  Top -->
+        <!--  Top 
 
-        <div class="custom-control custom-checkbox h6">
-          <input type="checkbox" name="Top" [(ngModel)]="top" class="custom-control-input" id="customCheck2">
-          <label class="custom-control-label" for="customCheck2">
+        <div class="h6">
+         
+          <label>
             Top</label>
         </div>
 
-        <div class="form-row" *ngIf="top">
+        <div class="form-row">
           <div class="form-group col">
             <label for="inputCity">M1</label>
             <input type="text" class="form-control" id="inputCity">
@@ -168,14 +190,13 @@
         </div>
 
 
-        <!--  Skirt Blouse -->
+          Skirt Blouse 
 
-        <div class="custom-control custom-checkbox h6">
-          <input type="checkbox" name="SkirtBlouse" [(ngModel)]="skirtBlouse" class="custom-control-input" id="customCheck3">
-          <label class="custom-control-label" for="customCheck3">
+        <div class="h6">
+          <label>
             Skirt Blouse</label>
         </div>
-        <div class="form-row" *ngIf="skirtBlouse">
+        <div class="form-row">
           <div class="form-group col">
             <label for="inputCity">M1</label>
             <input type="text" class="form-control" id="inputCity">
@@ -223,8 +244,11 @@
 
 
         </div>
+       
+       -->
+       
         <div class="float-right clearfix">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" class="btn btn-primary">Save Customer</button>
         </div>
 
 

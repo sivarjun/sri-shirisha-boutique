@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
+import { CustomerDataService } from './customer/customer-data.service';
+import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { EditCustomerComponent } from './customer/edit-customer/edit-customer.co
     AppComponent,
     HomeComponent,
     CustomerListComponent,
-    EditCustomerComponent
+    EditCustomerComponent,
+    CustomerDetailComponent
  
     
   ],
@@ -25,7 +28,7 @@ import { EditCustomerComponent } from './customer/edit-customer/edit-customer.co
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CustomerDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

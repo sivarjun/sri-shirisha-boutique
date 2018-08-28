@@ -1,3 +1,33 @@
-<p>
-  customer-list works!
-</p>
+<div class="container mt-3">
+
+  <div class="row">
+<h4 class="mr-auto">Customer List</h4> 
+<form class="form-inline" >
+  <div class="form-group">
+      <label for="searchBoxId">Search By : </label>
+      <input type="text" id="searchBoxId" class="form-control ml-2"
+       placeholder="Phone Number" name="searchInput" [(ngModel)]="listFilter">
+    
+  </div>
+</form>
+
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col"
+     *ngFor="let customer of filteredCustomers">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="cursor:pointer" [routerLink]="[customer.CustomerId]">{{customer.Name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{customer.Phone}}</h6>
+          <p class="card-text">{{customer.Address}}</p>
+        <button class="btn btn-outline-primary" [routerLink]="[customer.CustomerId,'edit']" >Edit</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

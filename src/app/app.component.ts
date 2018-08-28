@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Customer } from './customer/customer';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,6 @@ constructor(private http:HttpClient){
 
 }
 ngOnInit(): void {
-  this.http.get<any[]>('http://localhost:59226/api/Customer')
-  .subscribe(result=>console.log(result));
+ 
 }
 }
