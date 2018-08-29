@@ -10,19 +10,22 @@ export class Blouse {
     FrontNeckDepth:number;
     SleeveLength:number;
     IsDeleted:number;
+    ItemId:number;
+  
     constructor()
     {
-        this.AroundAboveWaist=0;
-        this.AroundArm=0;
-        this.BackNeckDepth=0;
-        this.BlouseId=0;
-        this.BlouseLength=0;
-        this.Bust=0;
-        this.CreatedDate=null;
-        this.CustomerId=0;
-        this.FrontNeckDepth=0;
-        this.SleeveLength=0;
-        this.IsDeleted=0 
+        this.AroundAboveWaist=null;
+        this.AroundArm=null;
+        this.BackNeckDepth=null;
+        this.BlouseId=null;
+        this.BlouseLength=null;
+        this.Bust=null;
+        this.CreatedDate=new Date();
+        this.CustomerId=null;
+        this.FrontNeckDepth=null;
+        this.SleeveLength=null;
+        this.IsDeleted=0;
+        this.ItemId=null;
     }
   
 }

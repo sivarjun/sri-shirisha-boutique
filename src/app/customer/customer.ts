@@ -8,8 +8,7 @@ export class Customer {
     Gender: string;
     IsDeleted: number;
     Name: string;
-    Orders?: IOrder[];
-    Phone: number
+    Phone: number;
 
     constructor() {
         this.Address = "";
@@ -19,7 +18,6 @@ export class Customer {
         this.IsDeleted = 0;
         this.Name = "";
         this.Phone = null;
-        this.Orders=null;
     }
 
 

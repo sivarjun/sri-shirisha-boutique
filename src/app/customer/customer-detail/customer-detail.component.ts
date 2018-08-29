@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../customer';
 import { CustomerDataService } from '../customer-data.service';
+import { BotiqueError } from '../../shared/botique-error';
 
 @Component({
   selector: 'app-customer-detail',
@@ -17,7 +18,12 @@ export class CustomerDetailComponent implements OnInit {
   {
       this.customerId=this.route.snapshot.params['id'];
       this.customerData.getCustomer(this.customerId)
-      .subscribe(customer=>this.customer=customer);
+      .subscribe(
+       (data:Customer)=>this.customer=data,
+       (err:BotiqueError)=>
+       console.log(`Error code : ${err.ErrorNumber} ,
+         message : ${err.frndlyMessage}`)
+     );
   }
 
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Customer } from './customer';
 import { CustomerDataService } from './customer-data.service';
+import { BotiqueError } from '../shared/botique-error';
 
 @Component({
   selector: 'app-customer-list',
@@ -28,12 +29,14 @@ export class CustomerListComponent implements OnInit {
 
   ngOnInit() {
     this.customerData.getCustomers()
-    .subscribe(customers=> {
-      this.customers=customers;
+    .subscribe((data:Customer[])=> {
+      this.customers=data;
       this.filteredCustomers=this.customers;
-      console.log(this.customers );
+      console.log(this.customers );},
+      (err:BotiqueError)=>
+      console.log(`Error code : ${err.ErrorNumber}, Message : ${err.frndlyMessage}`)
     
-    });
+    );
   }
 
   performFilter(filterBy: string): Customer[] {

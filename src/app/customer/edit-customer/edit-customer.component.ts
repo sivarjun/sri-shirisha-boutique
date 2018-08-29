@@ -4,6 +4,8 @@ import { CustomerDataService } from '../customer-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Blouse } from '../blouse';
+import { BotiqueError } from '../../shared/botique-error';
+import { Form, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-customer',
@@ -31,24 +33,38 @@ export class EditCustomerComponent implements OnInit {
   }
 
   getProduct(id: number) {
-
-
     if (id == 0) {
       this.customer = new Customer();
-      //this.customer.BlouseMesurements=Blouse[0];
     }
     else {
       this.customerService.getCustomer(id).subscribe(
-        customer => {
-          this.customer = customer;
-          console.log(customer);
+          (data:Customer) => {
+          this.customer = data;
+          console.log(data);
         },
-        error => this.errorMessage = <any>error);
+        (err:BotiqueError) =>
+        console.log(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+      );
     }
 
-
+    
   }
 
+  SaveCustomer(customerData:NgForm)
+  {
+      console.log(this.customer);
+    //  this.customer.BlouseMesurement.ItemId=1; 
+      this.customerService.saveCusomer(this.customer)
+      .subscribe(
+        responce=>console.log(responce),
+        (err:BotiqueError)=> console.log(err.frndlyMessage)
+      
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
 
 
