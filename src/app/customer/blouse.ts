@@ -1,14 +1,13 @@
 export class Blouse {
-    AroundAboveWaist:number;
-    AroundArm:number;
-    BackNeckDepth:number;
-    BlouseId:number;
-    BlouseLength:number;
-    Bust:number;
+    AroundAboveWaist?:number;
+    AroundArm?:number;
+    BackNeckDepth?:number;
+    BlouseLength?:number;
+    Bust?:number;
     CreatedDate:Date;
     CustomerId:number;
-    FrontNeckDepth:number;
-    SleeveLength:number;
+    FrontNeckDepth?:number;
+    SleeveLength?:number;
     IsDeleted:number;
     ItemId:number;
   
@@ -17,7 +16,6 @@ export class Blouse {
         this.AroundAboveWaist=null;
         this.AroundArm=null;
         this.BackNeckDepth=null;
-        this.BlouseId=null;
         this.BlouseLength=null;
         this.Bust=null;
         this.CreatedDate=new Date();

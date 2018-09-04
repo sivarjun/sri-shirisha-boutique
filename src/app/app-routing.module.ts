@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
+import { CreateOrderComponent } from './orders/create-order/create-order.component';
 
 const routes: Routes = [
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'customers',component:CustomerListComponent},
   {path:'customers/:id',component:CustomerDetailComponent},
   {path:'customers/:id/edit',component:EditCustomerComponent},
+  {path:'customers/:id/createorder',component:CreateOrderComponent},
   {path:'**',redirectTo:''}
 
 

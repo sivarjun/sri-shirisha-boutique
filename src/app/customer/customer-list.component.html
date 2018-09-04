@@ -6,7 +6,7 @@
   <div class="form-group">
       <label for="searchBoxId">Search By : </label>
       <input type="text" id="searchBoxId" class="form-control ml-2"
-       placeholder="Phone Number" name="searchInput" [(ngModel)]="listFilter">
+       placeholder="Customer Name" name="searchInput" [(ngModel)]="listFilter">
     
   </div>
 </form>
@@ -14,16 +14,23 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col"
+    <div class="col-sm-6 col-md-4 mb-3"
      *ngFor="let customer of filteredCustomers">
 
       <div class="card">
+        <div class="card-header">
+<h5>Customer Id : {{customer.CustomerId}}</h5>
+        </div>
         <div class="card-body">
-          <h5 class="card-title" style="cursor:pointer" [routerLink]="[customer.CustomerId]">{{customer.Name}}</h5>
+          <h5 class="card-title" style="cursor:pointer"
+           [routerLink]="[customer.CustomerId]">{{customer.Name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{customer.Phone}}</h6>
           <p class="card-text">{{customer.Address}}</p>
-        <button class="btn btn-outline-primary" [routerLink]="[customer.CustomerId,'edit']" >Edit</button>
-        </div>
+        <button class="btn btn-outline-primary mr-3" [routerLink]="[customer.CustomerId,'edit']" >Edit</button>
+        <button class="btn btn-outline-success" 
+        [routerLink]="[customer.CustomerId,'createorder']" >Create Order</button>
+       
+      </div>
       </div>
 
 

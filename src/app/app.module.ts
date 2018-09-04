@@ -10,6 +10,8 @@ import { CustomerListComponent } from './customer/customer-list.component';
 import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
 import { CustomerDataService } from './customer/customer-data.service';
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
+import { OrdersListComponent } from './orders/orders-list.component';
+import { CreateOrderComponent } from './orders/create-order/create-order.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { CustomerDetailComponent } from './customer/customer-detail/customer-det
     HomeComponent,
     CustomerListComponent,
     EditCustomerComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    OrdersListComponent,
+    CreateOrderComponent
  
     
   ],

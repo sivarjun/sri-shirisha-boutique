@@ -30,7 +30,7 @@ export class CustomerDataService {
         map((response: Customer) => {
           const customer: Customer = response;
           if (customer.BlouseMesurement == null) {
-            customer.BlouseMesurement = new Blouse();
+            customer.BlouseMesurement=new Blouse();
           }
           return customer;
         }),
@@ -44,6 +44,7 @@ export class CustomerDataService {
 
       saveCusomer(customer: Customer) : Observable<Customer | BotiqueError> {
         customer.CustomerId=null;
+        
         return this.http.post<Customer>
         ('http://localhost:62066/api/Customer',customer)
         .pipe(
@@ -52,6 +53,17 @@ export class CustomerDataService {
 
         );
   }
+
+  updateCusomer(customer: Customer) : Observable<Customer | BotiqueError> {
+        
+    return this.http.put<Customer>
+    ('http://localhost:62066/api/Customer/'+customer.CustomerId, customer)
+    .pipe(
+      tap(data => console.log("From Service : " + JSON.stringify(data))),
+      catchError(err => this.handleHttpError(err))
+
+    );
+}
 
 
   private handleHttpError(err: HttpErrorResponse): Observable<BotiqueError> {
