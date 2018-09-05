@@ -8,19 +8,20 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { Customer } from './customer';
 import { Blouse } from './blouse';
 import { BotiqueError } from '../shared/botique-error';
+import { CustomeHttpErrorService } from '../custome-http-error.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private customeError:CustomeHttpErrorService) { }
 
   getCustomers(): Observable<Customer[] | BotiqueError> {
     return this.http.get<Customer[]>('http://localhost:62066/api/Customer')
       .pipe(
         tap(data => console.log("From Service : " + JSON.stringify(data))),
-        catchError(err => this.handleHttpError(err))
+        catchError(err => this.customeError.handleHttpError(err))
       )
   }
 
@@ -35,7 +36,7 @@ export class CustomerDataService {
           return customer;
         }),
         tap(data => console.log("From Service : " + JSON.stringify(data))),
-        catchError(err => this.handleHttpError(err))
+        catchError(err => this.customeError.handleHttpError(err))
 
       );
 
@@ -49,7 +50,7 @@ export class CustomerDataService {
         ('http://localhost:62066/api/Customer',customer)
         .pipe(
           tap(data => console.log("From Service : " + JSON.stringify(data))),
-          catchError(err => this.handleHttpError(err))
+          catchError(err => this.customeError.handleHttpError(err))
 
         );
   }
@@ -60,18 +61,12 @@ export class CustomerDataService {
     ('http://localhost:62066/api/Customer/'+customer.CustomerId, customer)
     .pipe(
       tap(data => console.log("From Service : " + JSON.stringify(data))),
-      catchError(err => this.handleHttpError(err))
+      catchError(err => this.customeError.handleHttpError(err))
 
     );
 }
 
 
-  private handleHttpError(err: HttpErrorResponse): Observable<BotiqueError> {
-    let dataError = new BotiqueError();
-    dataError.ErrorNumber = 100;
-    dataError.ErrorMessage = err.statusText;
-    dataError.frndlyMessage = 'An error occurred retrieving data.';
-    return throwError(dataError);
-  }
+
 
 }
