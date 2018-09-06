@@ -22,31 +22,26 @@
              formControlName="customerPhone" readonly>
           </div>
         </div>
-
         <div formArrayName="items"
         *ngFor="let item of items.controls;let i=index" >
-        <div class="row" [formGroupName]="i">
+        <div class="row shadow-sm mb-1 bg-white rounded" [formGroupName]="i">
             <div class="col-md-3 mb-3">
               <label attr.for="{{'itemType' + i}}">Item typy</label>
               <select class="custom-select d-block w-100" 
               formControlName="itemType" (change)="DisplayTotalAmount(i)" id="{{'itemType' + i}}">
-               <option value="">Choose...</option>
+              
                 <option value="{{item.Name}}"  *ngFor="let item of listItems">{{item.Name}}</option>
               </select>
 
             </div>
             <div class="col-md-3 mb-3">
               <label attr.for="{{'Qty' + i}}">Qty</label>
-              <select class="custom-select d-block w-100" id="{{'Qty' + i}}"
+              <input type="text" class="form-control" 
               (change)="DisplayTotalAmount(i)"
-              formControlName="itemQty">
-                <option value="">Choose...</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-
+              formControlName="itemQty"   id="{{'itemQty' + i }}">
+              <span class="alert-danger" *ngIf="!customerForm.get('items').controls[i].get('itemQty').valid" >
+                min 1 and max 10
+              </span>
             </div>
             <div class="col-md-2 mb-3">
               <label attr.for="{{'amount' + i}}">Amount</label>
@@ -56,43 +51,69 @@
             </div>
             <div class="col-md-2 mb-3">
               <label attr.for="{{'totalAmount' + i}}">Total Amount</label>
-              <input type="text" class="form-control"
-               id="{{'totalAmount' + i}}" formControlName="totalAmount" readonly>
+              <input type="text" class="form-control" 
+              id="{{'totalAmount' + i}}" formControlName="totalAmount" readonly>
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-outline-danger btn-sm" style="position:relative;top:35px" (click)="deleteItem(i)">X</button>
+            <div class="col-md-2 mb-3">
+              <br>
+                <button class="btn btn-outline-danger btn-sm" (click)="deleteItem(i)">X</button>
             </div>
         </div>
         
       </div>
       <button class="btn btn-outline-primary btn-sm" (click)="AddItems()">Add Item</button>
       
+
+      <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="AdvanceAmount">Advance Paid</label>
+            <input type="text" class="form-control" (change)="UpdateBalanceAmt()"
+             id="AdvanceAmount" formControlName="advancePaid">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="BalanceAmount">Balance Amount</label>
+            <input type="text" class="form-control"
+            formControlName="balanceAmount" readonly>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="GrandTotal">Grand Total</label>
+            <input type="text" class="form-control"
+             formControlName="grandTotal" readonly>
+          </div>
+        </div>
+<div class="row">
+<div class="col-md-4 mb-3">
+  
+    <label for="delivaryDate">Delivary Date </label>
+
+    <div class="input-group mb-3">
+      <input matInput [min]="minDate" class="form-control" [matDatepicker]="picker" formControlName="delivaryDate">
+     <div class="input-group-append">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      
+     </div> 
+     <mat-datepicker #picker></mat-datepicker>
+  </div>
+       
+  
+
+    
+</div>
+</div>
+
        
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block"
         (click)="placeOrder()"
+        [disabled]="!customerForm.valid || !customerForm.dirty"
         type="submit">Place Order</button>
       </form>
     </div>
    
   </div>
+ 
 
   
-
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2017-2018 Sri Shirisha Boutique</p>
-     <ul class="list-inline">
-      <li class="list-inline-item">
-        <a href="#">Privacy</a>
-      </li>
-      <li class="list-inline-item">
-        <a href="#">Terms</a>
-      </li>
-      <li class="list-inline-item">
-        <a href="#">Support</a>
-      </li>
-    </ul>
-  </footer>
 
 
 

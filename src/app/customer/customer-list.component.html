@@ -1,40 +1,95 @@
 <div class="container mt-3">
 
   <div class="row">
-<h4 class="mr-auto">Customer List</h4> 
-<form class="form-inline" >
-  <div class="form-group">
-      <label for="searchBoxId">Search By : </label>
-      <input type="text" id="searchBoxId" class="form-control ml-2"
-       placeholder="Customer Name" name="searchInput" [(ngModel)]="listFilter">
-    
-  </div>
-</form>
+    <h4 class="mr-auto">Customer List</h4>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="searchBoxId">Search By : </label>
+        <input type="text" id="searchBoxId" class="form-control ml-2" placeholder="Customer Name" name="searchInput" [(ngModel)]="listFilter">
+
+      </div>
+    </form>
 
   </div>
   <hr>
-  <div class="row">
-    <div class="col-sm-6 col-md-4 mb-3"
-     *ngFor="let customer of filteredCustomers">
+
+  <table mat-table [dataSource]="filteredCustomers">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+
+
+    <!-- CustomerId Column -->
+    <ng-container matColumnDef="CustomerId">
+      <th mat-header-cell *matHeaderCellDef> Customer Code </th>
+      <td mat-cell *matCellDef="let element" >
+        {{element.CustomerId}} </td>
+    </ng-container>
+    
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> 
+          <a [routerLink]="[element.CustomerId]">{{element.Name}}</a> </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Phone">
+      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.Phone}} </td>
+    </ng-container>
+ <!-- Address Column -->
+ <ng-container matColumnDef="Address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let element"> <a [routerLink]="[element.CustomerId,'edit']">Edit</a> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Order">
+        <th mat-header-cell *matHeaderCellDef> Order </th>
+        <td mat-cell *matCellDef="let element"> <a [routerLink]="[element.CustomerId,'createorder']">Create Order</a> </td>
+      </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="row">
+    <div class="col-sm-6 col-md-4 mb-3" *ngFor="let customer of filteredCustomers">
 
       <div class="card">
         <div class="card-header">
-<h5>Customer Id : {{customer.CustomerId}}</h5>
+          <h5>Customer Id : {{customer.CustomerId}}</h5>
         </div>
         <div class="card-body">
-          <h5 class="card-title" style="cursor:pointer"
-           [routerLink]="[customer.CustomerId]">{{customer.Name}}</h5>
+          <h5 class="card-title" style="cursor:pointer" [routerLink]="[customer.CustomerId]">{{customer.Name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{customer.Phone}}</h6>
           <p class="card-text">{{customer.Address}}</p>
-        <button class="btn btn-outline-primary mr-3" [routerLink]="[customer.CustomerId,'edit']" >Edit</button>
-        <button class="btn btn-outline-success" 
-        [routerLink]="[customer.CustomerId,'createorder']" >Create Order</button>
-       
-      </div>
+          <button class="btn btn-outline-primary mr-3" 
+          [routerLink]="[customer.CustomerId,'edit']">Edit</button>
+          <button class="btn btn-outline-success" [routerLink]="[customer.CustomerId,'createorder']">Create Order</button>
+
+        </div>
       </div>
 
 
     </div>
-  </div>
+  </div> -->
 
 </div>

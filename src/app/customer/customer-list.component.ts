@@ -5,6 +5,7 @@ import { Customer } from './customer';
 import { CustomerDataService } from './customer-data.service';
 import { BotiqueError } from '../shared/botique-error';
 
+
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
@@ -25,6 +26,12 @@ export class CustomerListComponent implements OnInit {
   }
 
 
+  displayedColumns: string[] = ['CustomerId','Name','Phone','Address','Edit','Order'];
+ 
+
+ /*  'Address', 'BlouseMesurement',
+  'CustomerId', 'Gender', 'IsDeleted', */
+
   constructor(private customerData:CustomerDataService) { }
 
   ngOnInit() {
@@ -32,6 +39,7 @@ export class CustomerListComponent implements OnInit {
     .subscribe((data:Customer[])=> {
       this.customers=data;
       this.filteredCustomers=this.customers;
+     
       console.log(this.customers );},
       (err:BotiqueError)=>
       console.log(`Error code : ${err.ErrorNumber}, Message : ${err.frndlyMessage}`)
