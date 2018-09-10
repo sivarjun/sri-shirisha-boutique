@@ -6,16 +6,22 @@ import { Subscription } from 'rxjs';
 import { Blouse } from '../blouse';
 import { BotiqueError } from '../../shared/botique-error';
 import { Form, NgForm } from '@angular/forms';
+import { AlertToastrService } from '../../alert.toastr.service';
+import { ViewChild } from '@angular/core';
+import { fadeInAnimation } from '../../Animation/fade-in-animation';
 
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
-  styleUrls: ['./edit-customer.component.css']
+  styleUrls: ['./edit-customer.component.css'],
+  animations:[fadeInAnimation]
 })
 export class EditCustomerComponent implements OnInit {
   customer: Customer = new Customer();
   id: number;
   errorMessage: any;
+  @ViewChild('customerForm') form: any
+exe='';
   disableSaveBtn: boolean = false;
 
   private sub: Subscription
@@ -23,7 +29,8 @@ export class EditCustomerComponent implements OnInit {
   constructor(
     private customerService: CustomerDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alert:AlertToastrService
   ) {
 
     console.log("1 From constructor");
@@ -38,12 +45,13 @@ export class EditCustomerComponent implements OnInit {
         this.getProduct(this.id);
       });
 
-
+this.exe='doAnimate';
   }
 
   getProduct(id: number) {
     if (id == 0) {
       this.customer = new Customer();
+      this.form.reset();
     }
     else {
       this.customerService.getCustomer(id).subscribe(
@@ -52,7 +60,10 @@ export class EditCustomerComponent implements OnInit {
           console.log(data);
         },
         (err: BotiqueError) =>
+        {
           console.log(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+          this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+        }
       );
     }
 
@@ -68,10 +79,15 @@ export class EditCustomerComponent implements OnInit {
         .subscribe(
           responce => {
             console.log(responce)
+            this.alert.Success('Customer data saved successfully');
             this.router.navigate(['/customers'])
             this.disableSaveBtn = false;
           },
-          (err: BotiqueError) => console.log(err.frndlyMessage)
+          (err: BotiqueError) =>{ 
+            console.log(err.frndlyMessage);
+            this.disableSaveBtn = false;
+            this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+          }
 
         );
     }
@@ -80,10 +96,15 @@ export class EditCustomerComponent implements OnInit {
         .subscribe(
           responce => {
             console.log(responce)
+            this.alert.Success('Customer data saved successfully');
             this.router.navigate(['/customers']);
             this.disableSaveBtn = false;
           },
-          (err: BotiqueError) => console.log(err.frndlyMessage)
+          (err: BotiqueError) => 
+          {console.log(err.frndlyMessage)
+            this.disableSaveBtn = false;
+            this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+          }
 
         );
     }

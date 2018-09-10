@@ -110,20 +110,15 @@ private  CalGrandTotal()
     })
   }
 
-  DisplayAmount(i: number): void {
-   const controlArray = <FormArray>this.customerForm.get('items');
-   const selectedItem = controlArray.controls[i].get('itemType').value;
-   const amount=this.getItemStitchingCost(selectedItem);
-    controlArray.controls[i].get('amount').setValue(amount);
-  }
+  
  
   DisplayTotalAmount(i: number): void {
     const controlArray = <FormArray>this.customerForm.get('items');
     const Qty = controlArray.controls[i].get('itemQty').value;
 
     const selectedItem = controlArray.controls[i].get('itemType').value;
-    const cost=this.getItemStitchingCost(selectedItem);
-    controlArray.controls[i].get('amount').setValue(cost);
+    const cost=controlArray.controls[i].get('amount').value;
+  
 
     const totalAmount=this.ClaculateItemStitchingCost(Qty,cost);
      controlArray.controls[i].get('totalAmount').setValue(totalAmount);

@@ -1,271 +1,212 @@
-<div class="container my-3">
- <div class="row justify-content-md-center">
-   <div class="col-md-10 ">
-      <div class="card bg-light">
-          <div class="card-header">
-           <h4> 
-             {{ id==0?'Add Customer':'Edit Customer ( '+customer.CustomerId+ ' )'}}
-            </h4>
-      
-          </div>
-          <div class="card-body">
-      
-            <form  #customerForm="ngForm" (ngSubmit)="!disableSaveBtn?SaveCustomer(customerForm):null">
-      
-              <div class="mb-3">
-                <h5>Customer Info</h5>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="customerName">Customer Name</label>
-                  <input type="text" class="form-control" name="customerName"   [(ngModel)]="customer.Name"
-                  placeholder="Customer Name">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPhone">Phone</label>
-                  <input type="number" class="form-control"
-                  name="customerPhone"
-                  [(ngModel)]="customer.Phone"
-                   id="inputPhone" placeholder="Phone Number">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" 
-                name="customerAddress"
-                  [(ngModel)]="customer.Address"
-                id="inputAddress" placeholder="#007 Main St">
-              </div>
-              <div class="form-group">
-                <div>
-                  <label>Gender</label>
-                </div>
-               
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input type="radio" id="inputFemale" value="Female" [(ngModel)]="customer.Gender" name="customrGender" class="custom-control-input">
-                  <label class="custom-control-label" for="inputFemale">Female</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="inputMale" value="Male" [(ngModel)]="customer.Gender" name="customrGender" class="custom-control-input">
-                    <label class="custom-control-label" for="inputMale">Male</label>
-                  </div>
-              </div>
-      
-      
-      
-      
-      
-              <div class="mb-3">
-                <h5>Mesurmentes</h5>
-              </div>
-      
-              <!--  Blouse -->
-      
-              <div class="h6">
-               <label> Blouse </label>
-              </div>
-      
-              <div class="form-row">
-                <div class="form-group col">
-                  <label for="inputCity">Bust</label>
-                  <input type="text" class="form-control"
-                  name="Bust"
-                  [(ngModel)]="customer.BlouseMesurement.Bust">
-               
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">BlouseLength</label>
-                  <input type="text"
-                   class="form-control"
-                   name="BlouseLength"
-                   [(ngModel)]="customer.BlouseMesurement.BlouseLength"
-                   >
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">AroundAboveWaist</label>
-                  <input type="text" class="form-control"
-                  name="AroundAboveWaist"
-                  [(ngModel)]="customer.BlouseMesurement.AroundAboveWaist">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">FrontNeckDepth</label>
-                  <input type="text" class="form-control" 
-                   name="FrontNeckDepth"
-                  [(ngModel)]="customer.BlouseMesurement.FrontNeckDepth">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">BackNeckDepth</label>
-                  <input type="text" class="form-control"
-                  name="BackNeckDepth"
-                  [(ngModel)]="customer.BlouseMesurement.BackNeckDepth">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">AroundArm</label>
-                  <input type="text" class="form-control" 
-                  name="AroundArm"
-                  [(ngModel)]="customer.BlouseMesurement.AroundArm"
-                  >
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">SleeveLength</label>
-                  <input type="text" class="form-control" 
-                  name="SleeveLength"
-                  [(ngModel)]="customer.BlouseMesurement.SleeveLength">
-                </div>
-               <!--  <div class="form-group col">
-                  <label for="inputCity">M8</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M9</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M10</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M11</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div> -->
-      
-      
-      
-              </div>
-      
-      
-              <!--  Top 
-      
-              <div class="h6">
-               
-                <label>
-                  Top</label>
-              </div>
-      
-              <div class="form-row">
-                <div class="form-group col">
-                  <label for="inputCity">M1</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M2</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M3</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M4</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M5</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M6</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M7</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M8</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M9</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M10</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M11</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M12</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-      
-              </div>
-      
-      
-                Skirt Blouse 
-      
-              <div class="h6">
-                <label>
-                  Skirt Blouse</label>
-              </div>
-              <div class="form-row">
-                <div class="form-group col">
-                  <label for="inputCity">M1</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M2</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M3</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M4</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M5</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M6</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M7</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M8</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M9</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col">
-                  <label for="inputZip">M10</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="form-group col">
-                  <label for="inputCity">M11</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-      
-      
-              </div>
-             
-             -->
-             
-              <div class="float-right clearfix">
-                  <button type="button"
-                  class="btn btn-primary mr-3" (click)="GetCustomers()">Go Back</button>
-                <button type="submit"
-                 class="btn btn-primary" >Save Customer</button>
-              </div>
-      
-      
-      
-            </form>
-          </div>
-      
-        </div>
+<div class="container my-3" [@fadeInAnimation]="exe">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4 col-md-offset-4">
+          <h4>
+            {{ id == 0 ?'Add Customer':'Edit Customer'}}
+          </h4>
    </div>
- </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-12">
+      <form #customerForm="ngForm" (ngSubmit)="!disableSaveBtn?SaveCustomer(customerForm):null">
+        <div class="mb-3">
+          <h5>Customer Info</h5>
+        </div>
+      <div class="shadow-sm mb-3 p-3 bg-white rounded">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="customerName">Customer Name
+              <span class="text-danger">*</span>
+            </label>
+            <input type="text" class="form-control" name="customerName"
+             [(ngModel)]="customer.Name" placeholder="Customer Name" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPhone">Phone
+              <span class="text-danger">*</span>
+            </label>
+            <input type="number" class="form-control" name="customerPhone" 
+            [(ngModel)]="customer.Phone" id="inputPhone" placeholder="Phone Number" required>
+          </div>
+        </div>
+      </div>
+        <div class="mb-3">
+          <h5>Mesurmentes</h5>
+        </div>
+
+        <!--  Blouse -->
+        <div class="shadow-sm mb-3 p-3 bg-white rounded">
+          <div class="h6">
+            <label> Blouse </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="BLength">Length</label>
+              <input type="number" class="form-control" id="BLength" name="BLength" 
+              [(ngModel)]="customer.BlouseMesurement.BlouseLength" required>
+
+            </div>
+            <div class="form-group col">
+              <label for="BShoulder">Shoulder</label>
+              <input type="number" class="form-control" name="BShoulder"
+               [(ngModel)]="customer.BlouseMesurement.Shoulder" required>
+            </div>
+            <div class="form-group col">
+              <label for="BHandLength">HandLength</label>
+              <input type="number" class="form-control" name="BHandLength"
+               [(ngModel)]="customer.BlouseMesurement.HandLength" required>
+            </div>
+            <div class="form-group col">
+              <label for="BHandBottomLoose">H.B.Loose</label>
+              <input type="number" class="form-control" name="BHandBottomLoose"
+               [(ngModel)]="customer.BlouseMesurement.HandBottomLoose" required>
+            </div>
+            <div class="form-group col">
+              <label for="BArmole">Armole</label>
+              <input type="number" class="form-control" name="BArmole" 
+              [(ngModel)]="customer.BlouseMesurement.Armole" required>
+            </div>
+            <div class="form-group col">
+              <label for="BFrontNeck">FrontNeck</label>
+              <input type="number" class="form-control" name="BFrontNeck"
+               [(ngModel)]="customer.BlouseMesurement.FrontNeck" required>
+            </div>
+            <div class="form-group col">
+              <label for="BBackNeck">BackNeck</label>
+              <input type="number" class="form-control" name="BBackNeck"
+               [(ngModel)]="customer.BlouseMesurement.BackNeck" required>
+            </div>
+            <div class="form-group col">
+              <label for="BChest">Chest</label>
+              <input type="number" class="form-control" name="BChest"
+               [(ngModel)]="customer.BlouseMesurement.Chest" required>
+            </div>
+            <div class="form-group col">
+              <label for="BUpperChest">UpperChest</label>
+              <input type="number" class="form-control" name="BUpperChest"
+               [(ngModel)]="customer.BlouseMesurement.UpperChest" required>
+            </div>
+            <div class="form-group col">
+              <label for="BWaist">Waist</label>
+              <input type="number" class="form-control" name="BWaist"
+               [(ngModel)]="customer.BlouseMesurement.Waist" required>
+            </div>
+            <div class="form-group col">
+              <label for="FrontPoint">FrontPoint</label>
+              <input type="number" class="form-control" name="FrontPoint"
+               [(ngModel)]="customer.BlouseMesurement.FrontPoint" required>
+            </div>
+
+
+
+          </div>
+        </div>
+        <!--  Dress -->
+        <div class="shadow-sm mb-3 p-3 bg-white rounded">
+          <div class="h6">
+            <label> Dress </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="DTopLength">Length</label>
+              <input type="number" class="form-control" name="DTopLength"
+               [(ngModel)]="customer.DressMesurement.TopLength" required>
+
+            </div>
+            <div class="form-group col">
+              <label for="DShoulder">Shoulder</label>
+              <input type="number" class="form-control" name="DShoulder"
+               [(ngModel)]="customer.DressMesurement.Shoulder" required>
+            </div>
+            <div class="form-group col">
+              <label for="DHandLength">HandLength</label>
+              <input type="number" class="form-control" name="DHandLength"
+               [(ngModel)]="customer.DressMesurement.HandLength" required>
+            </div>
+            <div class="form-group col">
+              <label for="DBHandBottomLoose">H.B.Loose</label>
+              <input type="number" class="form-control" name="DBHandBottomLoose"
+               [(ngModel)]="customer.DressMesurement.HandBottomLoose" required>
+            </div>
+            <div class="form-group col">
+              <label for="DArmole">Armole</label>
+              <input type="number" class="form-control" name="DArmole"
+               [(ngModel)]="customer.DressMesurement.Armole" required>
+            </div>
+            <div class="form-group col">
+              <label for="DFrontNeck">FrontNeck</label>
+              <input type="number" class="form-control" name="DFrontNeck"
+               [(ngModel)]="customer.DressMesurement.FrontNeck" required>
+            </div>
+            <div class="form-group col">
+              <label for="DBackNeck">BackNeck</label>
+              <input type="number" class="form-control" name="DBackNeck"
+               [(ngModel)]="customer.DressMesurement.BackNeck" required>
+            </div>
+            <div class="form-group col">
+              <label for="DChest">Chest</label>
+              <input type="number" class="form-control" name="DChest" 
+              [(ngModel)]="customer.DressMesurement.Chest" required>
+            </div>
+            <div class="form-group col">
+              <label for="DUpperChest">UpperChest</label>
+              <input type="number" class="form-control" name="DUpperChest"
+               [(ngModel)]="customer.DressMesurement.UpperChest" required>
+            </div>
+            <div class="form-group col">
+              <label for="DWaist">Waist</label>
+              <input type="number" class="form-control" name="DWaist"
+               [(ngModel)]="customer.DressMesurement.Waist" required>
+            </div>
+            <div class="form-group col">
+              <label for="Hip">Hip</label>
+              <input type="number" class="form-control" name="Hip" 
+              [(ngModel)]="customer.DressMesurement.Hip" required>
+            </div>
+            <div class="form-group col">
+              <label for="Slit">Slit</label>
+              <input type="number" class="form-control" name="Slit"
+               [(ngModel)]="customer.DressMesurement.Slit" required>
+            </div>
+
+
+          </div>
+        </div>
+        <!--  Bottom -->
+        <div class="shadow-sm mb-3 p-3 bg-white rounded">
+          <div class="h6">
+            <label> Bottom </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="BottomLength">Length</label>
+              <input type="number" class="form-control" name="BottomLength"
+               [(ngModel)]="customer.BottomMesurement.BottomLength" required>
+
+            </div>
+            <div class="form-group col">
+              <label for="BottomLoose">Loose</label>
+              <input type="number" class="form-control" name="BottomLoose"
+               [(ngModel)]="customer.BottomMesurement.BottomLoose" required>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="float-right clearfix">
+          <span class="text-info mr-3">All fields are required</span>
+          <button type="submit" [disabled]="!customerForm.valid"  class="btn btn-primary">Save Customer</button>
+        </div>
+
+
+       <!--  <button type="button" class="btn btn-primary mr-3" (click)="GetCustomers()">Customers</button>
+ -->
+      </form>
+    </div>
+  </div>
 
 </div>

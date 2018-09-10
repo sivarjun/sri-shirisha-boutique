@@ -1,7 +1,7 @@
-export class Blouse {
+export class Dress {
     CustomerId:number;
     ItemId:number;
-    BlouseLength?:number;
+    TopLength?:number;
     Shoulder?:number;
     HandLength?:number;
     HandBottomLoose?:number;
@@ -11,7 +11,8 @@ export class Blouse {
     Chest?:number;
     UpperChest?:number;
     Waist:number;
-    FrontPoint:number;
+    Hip:number;
+    Slit:number;
     IsDeleted:number;
     
   

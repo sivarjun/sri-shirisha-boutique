@@ -6,15 +6,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatNativeDateModule
   , MatFormFieldModule,MatInputModule,MatTableModule} from '@angular/material';
 
+  
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
-import { CustomerDataService } from './customer/customer-data.service';
+
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 import { OrdersListComponent } from './orders/orders-list.component';
 import { CreateOrderComponent } from './orders/create-order/create-order.component';
+import { LoginComponent } from './user/login/login.component';
+
 
 
 @NgModule({
@@ -25,8 +29,9 @@ import { CreateOrderComponent } from './orders/create-order/create-order.compone
     EditCustomerComponent,
     CustomerDetailComponent,
     OrdersListComponent,
-    CreateOrderComponent
- 
+    CreateOrderComponent,
+    LoginComponent
+    
     
   ],
   imports: [
@@ -42,7 +47,7 @@ import { CreateOrderComponent } from './orders/create-order/create-order.compone
     MatInputModule,
     MatTableModule
   ],
-  providers: [CustomerDataService,MatDatepickerModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

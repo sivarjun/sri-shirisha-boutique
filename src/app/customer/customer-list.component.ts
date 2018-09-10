@@ -4,19 +4,23 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from './customer';
 import { CustomerDataService } from './customer-data.service';
 import { BotiqueError } from '../shared/botique-error';
+import { fadeInAnimation } from '../Animation/fade-in-animation';
 
 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css']
+  styleUrls: ['./customer-list.component.css'],
+  animations:[fadeInAnimation]
 })
 export class CustomerListComponent implements OnInit {
   
   customers:Customer[];
   filteredCustomers:Customer[];
+  exe=''
 
   _listFilter = '';
+  
   get listFilter(): string {
     return this._listFilter;
   }
@@ -26,7 +30,7 @@ export class CustomerListComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['CustomerId','Name','Phone','Address','Edit','Order'];
+  displayedColumns: string[] = ['CustomerId','Name','Phone','Edit','Order'];
  
 
  /*  'Address', 'BlouseMesurement',
@@ -45,6 +49,7 @@ export class CustomerListComponent implements OnInit {
       console.log(`Error code : ${err.ErrorNumber}, Message : ${err.frndlyMessage}`)
     
     );
+    this.exe='doAnimate';
   }
 
   performFilter(filterBy: string): Customer[] {

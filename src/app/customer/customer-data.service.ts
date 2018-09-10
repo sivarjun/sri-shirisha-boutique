@@ -30,9 +30,6 @@ export class CustomerDataService {
       .pipe(
         map((response: Customer) => {
           const customer: Customer = response;
-          if (customer.BlouseMesurement == null) {
-            customer.BlouseMesurement=new Blouse();
-          }
           return customer;
         }),
         tap(data => console.log("From Service : " + JSON.stringify(data))),
