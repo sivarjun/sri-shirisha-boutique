@@ -54,15 +54,15 @@ this.exe='doAnimate';
       this.form.reset();
     }
     else {
-      this.customerService.getCustomer(id).subscribe(
-        (data: Customer) => {
-          this.customer = data;
+      this.route.data.subscribe(
+        (data:{customerData: Customer}) => {
+          this.customer = data.customerData;
           console.log(data);
         },
         (err: BotiqueError) =>
         {
           console.log(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
-          this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+          this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.ErrorMessage}`)
         }
       );
     }
@@ -103,7 +103,7 @@ this.exe='doAnimate';
           (err: BotiqueError) => 
           {console.log(err.frndlyMessage)
             this.disableSaveBtn = false;
-            this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.frndlyMessage}`)
+            this.alert.Error(`Error code : ${err.ErrorNumber} , message : ${err.ErrorMessage}`)
           }
 
         );

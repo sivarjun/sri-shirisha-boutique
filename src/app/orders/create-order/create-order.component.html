@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <div class="row justify-content-md-center">
 
-    <div class="col-md-8 order-md-1">
+    <div class="col-md-12 order-md-1">
       <h4 class="mb-3">Create Order</h4>
       <form  [formGroup]="customerForm"  novalidate>
         <div class="row">
@@ -25,7 +25,7 @@
         <div formArrayName="items"
         *ngFor="let item of items.controls;let i=index" >
         <div class="row shadow-sm mb-1 bg-white rounded" [formGroupName]="i">
-            <div class="col-md-3 mb-3">
+            <div class="col mb-3">
               <label attr.for="{{'itemType' + i}}">Item typy</label>
               <select class="custom-select d-block w-100" 
               formControlName="itemType" (change)="DisplayTotalAmount(i)" id="{{'itemType' + i}}">
@@ -34,7 +34,7 @@
               </select>
 
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col mb-3">
               <label attr.for="{{'Qty' + i}}">Qty</label>
               <input type="text" class="form-control" 
               (change)="DisplayTotalAmount(i)"
@@ -43,18 +43,21 @@
                 min 1 and max 10
               </span>
             </div>
-            <div class="col-md-2 mb-3">
+      
+    
+         
+            <div class="col mb-3">
               <label attr.for="{{'amount' + i}}">Amount</label>
               <input type="text" class="form-control"  (change)="DisplayTotalAmount(i)"
               formControlName="amount"   id="{{'amount' + i }}">
 
             </div>
-            <div class="col-md-2 mb-3">
+            <div class="col mb-3">
               <label attr.for="{{'totalAmount' + i}}">Total Amount</label>
               <input type="text" class="form-control" 
               id="{{'totalAmount' + i}}" formControlName="totalAmount" readonly>
             </div>
-            <div class="col-md-2 mb-3">
+            <div class="col mb-3">
               <br>
                 <button class="btn btn-outline-danger btn-sm" (click)="deleteItem(i)">X</button>
             </div>

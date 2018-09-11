@@ -4,8 +4,8 @@ import {FormsModule , ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatNativeDateModule
-  , MatFormFieldModule,MatInputModule,MatTableModule} from '@angular/material';
-
+  , MatFormFieldModule,MatInputModule,MatTableModule,MatProgressBarModule} from '@angular/material';
+import {FileUploadModule} from 'ng2-file-upload';
   
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { CustomerDetailComponent } from './customer/customer-detail/customer-det
 import { OrdersListComponent } from './orders/orders-list.component';
 import { CreateOrderComponent } from './orders/create-order/create-order.component';
 import { LoginComponent } from './user/login/login.component';
+import { UploadDesignsComponent } from './upload-designs/upload-designs.component';
 
 
 
@@ -30,7 +31,8 @@ import { LoginComponent } from './user/login/login.component';
     CustomerDetailComponent,
     OrdersListComponent,
     CreateOrderComponent,
-    LoginComponent
+    LoginComponent,
+    UploadDesignsComponent
     
     
   ],
@@ -45,7 +47,9 @@ import { LoginComponent } from './user/login/login.component';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressBarModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

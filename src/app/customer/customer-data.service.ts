@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { tap, map, catchError } from 'rxjs/operators';
+import { tap, map, delay,catchError } from 'rxjs/operators';
 
 
 
@@ -20,6 +20,7 @@ export class CustomerDataService {
   getCustomers(): Observable<Customer[] | BotiqueError> {
     return this.http.get<Customer[]>('http://localhost:62066/api/Customer')
       .pipe(
+        delay(500),
         tap(data => console.log("From Service : " + JSON.stringify(data))),
         catchError(err => this.customeError.handleHttpError(err))
       )
@@ -28,6 +29,7 @@ export class CustomerDataService {
   getCustomer(id: number): Observable<Customer | BotiqueError> {
     return this.http.get<Customer>('http://localhost:62066/api/Customer/' + id)
       .pipe(
+        delay(500),
         map((response: Customer) => {
           const customer: Customer = response;
           return customer;

@@ -10,10 +10,10 @@
   <div class="row justify-content-md-center">
     <div class="col-md-12">
       <form #customerForm="ngForm" (ngSubmit)="!disableSaveBtn?SaveCustomer(customerForm):null">
-        <div class="mb-3">
+        <div class="mb-1">
           <h5>Customer Info</h5>
         </div>
-      <div class="shadow-sm mb-3 p-3 bg-white rounded">
+      <div class="shadow-sm mb-3 p-1 bg-white rounded">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="customerName">Customer Name
@@ -31,21 +31,19 @@
           </div>
         </div>
       </div>
-        <div class="mb-3">
-          <h5>Mesurmentes</h5>
-        </div>
-
+       
         <!--  Blouse -->
-        <div class="shadow-sm mb-3 p-3 bg-white rounded">
+        <div class="shadow-sm mb-3 p-1 bg-white rounded">
           <div class="h6">
-            <label> Blouse </label>
+            <label> Blouse Mesurmentes</label>
           </div>
 
           <div class="form-row">
             <div class="form-group col">
               <label for="BLength">Length</label>
               <input type="number" class="form-control" id="BLength" name="BLength" 
-              [(ngModel)]="customer.BlouseMesurement.BlouseLength" required>
+              [(ngModel)]="customer.BlouseMesurement.BlouseLength"
+              min="1" required>
 
             </div>
             <div class="form-group col">
@@ -104,9 +102,9 @@
           </div>
         </div>
         <!--  Dress -->
-        <div class="shadow-sm mb-3 p-3 bg-white rounded">
+        <div class="shadow-sm mb-3 p-1 bg-white rounded">
           <div class="h6">
-            <label> Dress </label>
+            <label> Dress Mesurmentes</label>
           </div>
 
           <div class="form-row">
@@ -176,9 +174,9 @@
           </div>
         </div>
         <!--  Bottom -->
-        <div class="shadow-sm mb-3 p-3 bg-white rounded">
+        <div class="shadow-sm mb-3 p-1 bg-white rounded">
           <div class="h6">
-            <label> Bottom </label>
+            <label> Bottom Mesurmentes</label>
           </div>
 
           <div class="form-row">

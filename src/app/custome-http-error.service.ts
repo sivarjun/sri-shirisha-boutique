@@ -14,7 +14,7 @@ export class CustomeHttpErrorService {
    handleHttpError(err: HttpErrorResponse): Observable<BotiqueError> {
     let dataError = new BotiqueError();
     dataError.ErrorNumber = 100;
-    dataError.ErrorMessage = err.statusText;
+    dataError.ErrorMessage = err.message;
     dataError.frndlyMessage = 'An error occurred retrieving data.';
     return throwError(dataError);
   }

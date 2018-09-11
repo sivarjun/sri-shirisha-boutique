@@ -8,6 +8,7 @@ import { Customer } from '../../customer/customer';
 import { CustomerDataService } from '../../customer/customer-data.service';
 import { BotiqueError } from '../../shared/botique-error';
 import { Input } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-create-order',
@@ -25,9 +26,6 @@ export class CreateOrderComponent implements OnInit {
   minDate = new Date();
   
 
-
-
-
   get items(): FormArray {
     return <FormArray>this.customerForm.get('items');
   }
@@ -35,7 +33,8 @@ export class CreateOrderComponent implements OnInit {
   constructor(private fb: FormBuilder,
      private itemsService: ItemsService,
      private route:ActivatedRoute,
-     private customerService:CustomerDataService
+     private customerService:CustomerDataService,
+     private cd: ChangeDetectorRef
     ) { }
 
   ngOnInit() {
@@ -63,6 +62,26 @@ export class CreateOrderComponent implements OnInit {
       });
 
   }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+ 
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => {
+        this.customerForm.patchValue({
+          itemDesign: reader.result
+       });
+      
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+      };
+    }
+  }
+  
+
 
 ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
@@ -104,7 +123,7 @@ private  CalGrandTotal()
     return this.fb.group({
       itemType: ['',[Validators.required]],
       itemQty: [1,[Validators.required,
-        Validators.min(1),Validators.max(10)]],
+      Validators.min(1),Validators.max(10)]],
       amount: ['',[Validators.required]],
       totalAmount:['',[Validators.required]]
     })
